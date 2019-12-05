@@ -1,35 +1,11 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {funcDecrement, funcIncrement} from '../redux/actions';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const mapStateToProps = (state) => {
-    return {
-        count: state.count
-    }
-};
-
-class Counter extends Component {
-
-    increment = () => {
-        props.dispatch(funcDecrement);
-    }
-
-    decrement = () => {
-        props.dispatch(funcIncrement);
-    }
-
-    render() {
-        return (
-            <div className="counter">
-                <h2>Counter</h2>
-                <div>
-                    <button onClick={this.decrement}>-</button>
-                        <span>{this.props.count}</span>
-                    <button onClick={this.increment}>+</button>
-                </div>
-            </div>
-        )
-    }
+const Counter = ({ count }) => {
+    
 }
 
-export default connect(mapStateToProps)(Counter);
+hocComponent.propTypes = {
+}
+
+export default hocComponent
