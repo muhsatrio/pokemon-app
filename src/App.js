@@ -1,31 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 import {Provider} from 'react-redux';
 import { createStore } from 'redux';
+import NavbarPage from './components/NavbarPage';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+import PokemonList from './components/PokemonList';
+import PokemonDetail from './components/PokemonDetail';
+import MyPokemon from './components/MyPokemon';
 
-const store = createStore();
+// const store = createStore();
 
 function App() {
+  const [pokemons, setPokemon] = useState([{
+    id: 1,
+    name: "dummy",
+    img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    move: "lorem ipsum sit amer dolor",
+    type: "lorem ipsum sit amer dolor"
+  }]);
+
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-        <Provider store={store}>
+      <Router>
+        <NavbarPage />
+        <Switch>
+          <Route exact path="/">
+            <PokemonList />
+          </Route>
+          <Route path="/my-pokemon">
+            <MyPokemon />
+          </Route>
+          <Route path="/pokemon">
+            <PokemonDetail pokemon={pokemons[0]} />
+          </Route>
+        </Switch>
+      </Router>
+        {/* <Provider store={store}> */}
           {/* <Counter /> */}
-        </Provider>
+        {/* </Provider> */}
     </div>
   );
 }
