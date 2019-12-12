@@ -24,7 +24,7 @@ function App() {
       for (let i=1;i<=16;i++) {
         const result = await axios(`https://pokeapi.co/api/v2/pokemon/${i}`);
         temp.push({
-          id: i+1,
+          id: i,
           name: result.data.name,
           img: result.data.sprites.front_default,
           move: result.data.moves,
@@ -39,14 +39,17 @@ function App() {
   }, []);
 
   const addPokemon = (idPokemon, nickname) => {
+    console.log(pokemon);
     let temp = pokemon;
-    temp[idPokemon-2].owned++;
+    temp[idPokemon-1].owned++;
     setPokemon(temp);
     const myNewPokemon = {
       id: idMyPokemon,
-      img: pokemon[idPokemon-2].img,
-      nickname: nickname
+      img: pokemon[idPokemon-1].img,
+      nickname: nickname,
+      idPokemon: pokemon[idPokemon-1].id
     };
+    setIdMyPokemon(idMyPokemon+1);
     setMyPokemon([...mypokemon, myNewPokemon]);
   }
 
@@ -57,9 +60,18 @@ function App() {
     while (mypokemon[i].id!=idMyPokemon) {
       i++;
     }
-    const temp = [...mypokemon];
+
+    const idPokemon = mypokemon[i].idPokemon;
+    let temp = [...pokemon];
+    temp[idPokemon-1].owned = temp[idPokemon-1].owned -1;
+    setPokemon(temp);
+    
+    temp = [...mypokemon];
     temp.splice(i, 1);
     setMyPokemon(temp);
+
+    // temp[i].owned = temp.owned - 1;
+    // setPokemon(temp);
   }
 
   return (
