@@ -11,6 +11,7 @@ import PokemonList from './components/PokemonList';
 import PokemonDetail from './components/PokemonDetail';
 import MyPokemon from './components/MyPokemon';
 import axios from 'axios';
+import Spinner from './components/Spinner';
 
 function App() {
   const [initialized, setInitialized] = useState(false);
@@ -91,7 +92,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      ) : null}
+      ) : <Spinner />}
     </div>
     
   );
