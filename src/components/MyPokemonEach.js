@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import {Row, Col, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 const MyPokemonEach = ({pokemon, remove}) => {
 
@@ -11,6 +11,13 @@ const MyPokemonEach = ({pokemon, remove}) => {
         margin: '0 auto'
     }
 
+    const deleteHandler = (id) => {
+        let willRemoved = window.confirm("Are you sure to remove this pokemon?")
+        if (willRemoved) {
+            remove(id);
+        }
+    }
+
     return (
     <div className="PokemonDetail" style={divStyle}>
         <div style={{textAlign: 'center'}}>
@@ -18,7 +25,7 @@ const MyPokemonEach = ({pokemon, remove}) => {
         </div>
         <center>Nickname: <b>{pokemon.nickname}</b></center>
         <div style={{textAlign: 'center'}}>
-            <Button style={{margin: '15px'}} variant="danger" onClick={() => remove(pokemon.id)}>REMOVE!</Button>
+            <Button style={{margin: '15px'}} variant="danger" onClick={() => deleteHandler(pokemon.id)}>REMOVE!</Button>
         </div>
     </div>
 )}

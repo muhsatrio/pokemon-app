@@ -1,15 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-import PokemonListEach from './PokemonListEach'
+import PokemonListEach from './PokemonListEach';
+import {connect} from 'react-redux';
+import Spinner from '../components/Spinner';
 
-const PokemonList = ({pokemons}) => (
-    <div className="PokemonList" style={{display: 'flex', flexWrap: 'wrap'}}>
-        {pokemons.map((item, key) => <PokemonListEach pokemon={item} key={key} /> )}
-    </div>
-)
-
-PokemonList.propTypes = {
-    pokemons: PropTypes.array.isRequired
+const PokemonList = (props) => {
+    let page = <Spinner />;
+    if (props.listPokemon) {
+        page = (
+            <div className="PokemonList" style={{display: 'flex', flexWrap: 'wrap'}}>
+                {props.listPokemon.map((item, key) => <PokemonListEach pokemon={item} key={key} /> )}
+            </div>
+        );
+    }
+    return page;
 }
 
-export default PokemonList;
+const mapStateToProps = state => {
+    return {
+        listPokemon: state.pokemon
+    }
+}
+
+export default connect(mapStateToProps)(PokemonList);

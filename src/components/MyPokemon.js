@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MyPokemonEach from './MyPokemonEach';
+import {connect} from 'react-redux';
+import {removePokemon} from '../store/action'
 
-const MyPokemon = ({pokemons, remove}) => {
+const MyPokemon = (props) => {
 
     return (
     <div className="MyPokemon" style={{display: 'flex', flexWrap: 'wrap'}}>
-        {pokemons.length > 0 ? 
-            pokemons.map((item, key) => <MyPokemonEach pokemon={item} remove={remove} key={key} /> ) 
+        {props.myPokemon.length > 0 ? 
+            props.myPokemon.map((item, key) => <MyPokemonEach pokemon={item} remove={props.removeFunc} key={key} /> ) 
          : (
             <h3>Your Pokemon still empty, go catch them!</h3>
         )}
@@ -17,8 +19,20 @@ const MyPokemon = ({pokemons, remove}) => {
 }
 
 MyPokemon.propTypes = {
-    pokemons : PropTypes.array.isRequired,
-    remove: PropTypes.func.isRequired
+    myPokemon : PropTypes.array.isRequired,
+    removeFunc: PropTypes.func.isRequired
 };
 
-export default MyPokemon;
+const mapStateToProps = state => {
+    return {
+        myPokemon: state.mypokemon,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        removeFunc: (idMyPokemon) => dispatch(removePokemon({idMyPokemon: idMyPokemon}))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPokemon);
