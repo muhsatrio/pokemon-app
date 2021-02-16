@@ -28,4 +28,4 @@ jobs:
     - run: npm i
     - run: npm test
     - run: npm run build
-    #- run: sudo cp -r /home/ubuntu/ultah-haya/_work/ultah-haya/ultah-haya/build /var/www/haya.msatrio.com/html
+    - run: sudo cp -r /home/ubuntu/pokemon/_work/pokemon-app/pokemon-app/build /var/www/pokemon.msatrio.com/html
