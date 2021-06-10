@@ -29,7 +29,7 @@ export const initPokemon = (pokemons) => {
 export const fetchPokemon = () => {
     return async dispatch => {
         let temp = [];
-        for (let i=1;i<=16;i++) {
+        for (let i=1;i<=50;i++) {
           const result = await axios(`https://pokeapi.co/api/v2/pokemon/${i}`);
           temp = [...temp, {
             id: i,

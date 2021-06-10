@@ -37,9 +37,14 @@ const PokemonDetail = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.funcAddPokemon(id, nickname);
-        alert(`Your pokemon ${nickname} is on deck!`);
-        setCatched(false);
+        if (nickname === '' || nickname === undefined) {
+            alert('Name should not be empty!');
+        }
+        else {
+            props.funcAddPokemon(id, nickname);
+            alert(`Your pokemon ${nickname} is on deck!`);
+            setCatched(false);
+        }
     }
 
     let page = <Spinner />;
