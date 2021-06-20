@@ -12,7 +12,7 @@ const reducer = (state=initialState, action) => {
     let indexArr = null;
 
     switch (action.type) {
-        case ADD_POKEMON:
+        case ADD_POKEMON: {
             console.log(action.payload);
             // Increment owned value
             console.log(state.pokemon);
@@ -38,7 +38,8 @@ const reducer = (state=initialState, action) => {
                 mypokemon: myNewPokemon,
                 idMyPokemon: state.idMyPokemon+1
             }
-        case REMOVE_POKEMON:
+        }
+        case REMOVE_POKEMON: {
             // Delete my pokemon from list
             tempMyPokemon = state.mypokemon;
             const pokemonDeleted = tempMyPokemon.filter(arr => {
@@ -61,11 +62,13 @@ const reducer = (state=initialState, action) => {
                 pokemon: tempPokemon,
                 mypokemon: newPokemons
             }
-        case INIT_POKEMON:
+        }
+        case INIT_POKEMON: {
             return {
                 ...state,
                 pokemon: action.pokemons
             }
+        }
         default:
             return state;
     }

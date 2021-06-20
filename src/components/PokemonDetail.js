@@ -12,8 +12,6 @@ const PokemonDetail = (props) => {
     const [catched, setCatched] = useState(false);
     const [nickname, setNickname] = useState();
 
-    // const [idPokemon, setId] = useState(id);
-
     const divStyle = {
         padding: '10px',
         textAlign: 'left',
@@ -25,13 +23,13 @@ const PokemonDetail = (props) => {
         console.log(idPokemon);
         const probabilityCatched = Math.random();
         console.log(probabilityCatched);
-        if (probabilityCatched>=0.5) {
-          console.log('Catched!');
-          setCatched(true);
+        if (probabilityCatched>=0.30) {
+            console.log('Catched!');
+            setCatched(true);
         }
         else {
-          alert('You are not succesfull catch it, try again!');
-          console.log('Not catched :(');
+            alert('You are not succesfull catch it, try again!');
+            console.log('Not catched :(');
         }
       }
     
@@ -79,15 +77,17 @@ const PokemonDetail = (props) => {
             <div className="PokemonDetail" style={divStyle}>
             {catched ? (
                 <div className="catchedPokemon">
-                    <center><h3>You catched it!</h3></center>
-                    <img src={props.pokemons[i].img} style={{height: '300px'}} alt="" />
-                    <center>Let's give nickname to your pokemon!</center>
-                    <form onSubmit={handleSubmit}>
-                        <Form.Control name="nickname" style={{margin: '15px'}} type="text" placeholder="your pokemon nickname" onChange={e => setNickname(e.target.value)} />
-                        <div style={{textAlign: 'center'}}>
-                            <Button type="submit" variant="primary">Submit</Button>    
-                        </div>
-                    </form>
+                    <div>
+                        <center><h3>You catched it!</h3></center>
+                        <img src={props.pokemons[i].img} style={{height: '300px'}} alt="" />
+                        <center>Then, give nickname to your pokemon!</center>
+                        <form onSubmit={handleSubmit}>
+                            <Form.Control name="nickname" style={{margin: '15px'}} type="text" placeholder="your pokemon nickname" onChange={e => setNickname(e.target.value)} />
+                            <div style={{textAlign: 'center'}}>
+                                <Button type="submit" variant="primary">Submit</Button>    
+                            </div>
+                        </form>
+                    </div>
                 </div>
             ) : (
                 <div className="detailPokemon">
