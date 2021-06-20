@@ -11,6 +11,7 @@ import PokemonDetail from './components/PokemonDetail';
 import MyPokemon from './components/MyPokemon';
 import {connect} from 'react-redux';
 import {fetchPokemon} from './store/action';
+import PropTypes from 'prop-types';
 
 function App(props) {
 
@@ -42,6 +43,10 @@ const mapDispatchToProps = dispatch => {
   return {
     onInitPokemon: () => dispatch(fetchPokemon())
   }
+}
+
+App.propTypes = {
+  onInitPokemon: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(App);
